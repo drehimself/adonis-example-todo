@@ -1,0 +1,41 @@
+@layout('layouts.master')
+
+@section('title')
+  Edit | Adonis Todo App
+@endsection
+
+@section('content')
+  <div class="container">
+    <h1 class="mb-4 mt-4 text-center">Edit Todo</h1>
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+
+        @if(flashMessage('successMessage'))
+          <div class="alert alert-success mb-4">{{ flashMessage('successMessage') }}</div>
+        @endif
+
+        @if(hasErrorFor('editTodo'))
+          <div class="alert alert-danger mb-4">{{ getErrorFor('editTodo') }}</div>
+        @endif
+
+        <form action="{{ route('todos.update', { id: todo.id }) + '?_method=PATCH' }}" method="POST" class="mb-5">
+          {{ csrfField() }}
+
+          <div class="form-group">
+            <input type="text" class="form-control" name="editTodo" id="editTodo" value="{{ old('editTodo', todo.title) }}">
+          </div>
+
+          <div class="form-check form-group">
+            <input type="checkbox" class="form-check-input" name="completedCheck" id="completedCheck" {{ todo.completed ? 'checked' : '' }}>
+            <label class="form-check-label" for="completedCheck">Completed?</label>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Update Todo</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+@endsection
