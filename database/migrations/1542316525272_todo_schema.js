@@ -8,6 +8,7 @@ class TodoSchema extends Schema {
     // based on Knex: https://knexjs.org/#Schema-Building
     this.create('todos', (table) => {
       table.increments()
+      table.integer('user_id')
       table.string('title').notNullable()
       table.boolean('completed').default(false)
       table.timestamps()

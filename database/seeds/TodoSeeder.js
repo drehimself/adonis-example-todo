@@ -21,14 +21,17 @@ class TodoSeeder {
     //   .createMany(5)
 
     await Todo.create({
+      user_id: 1,
       title: 'Finish AdonisJS screencast'
     })
 
     await Todo.create({
+      user_id: 1,
       title: 'Work out'
     })
 
     await Todo.create({
+      user_id: 2,
       title: 'Take over world'
     })
   }
